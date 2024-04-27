@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body class="body-content">
+    <div class="controlBar">
+        <button id="test"></button>
+    </div>
+    <main class="main-content">
+        <div class="form-container"></div>
+        <div class="task-container"></div>
+    </main>
+
+
+    <dialog>
+        <h2>Task Creation Tool</h2>
+        <form>
+            <label>Title<br>
+                <input type="text" id="task-title" placeholder="Title">
+            </label>
+            <label>Description<br>
+                <input type="text" id="task-descripton" placeholder="Author">
+            </label>
+            <label>Priority?<br>
+                <input type="range" min="1" max="10" value="5" id="task-priority" placeholder="task-priority (0-10)?">
+            </label>
+            <label>Due Date<br>
+                <input type="date" id="task-dueDate" placeholder="mm/dd/yyyy">
+            </label>
+
+            <button type="submit" id="submitTaskData">Submit Task</button>
+        </form>
+    </dialog>
+
+</body>
+
+</html>

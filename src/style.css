@@ -1,0 +1,96 @@
+/*/main content/*/
+
+::backdrop {
+    background-color: orange;
+    opacity: 50%;
+
+}
+
+* {
+    margin: 0;
+}
+
+.body-content {
+    padding: 10px;
+    gap: 10px;
+
+}
+
+.controlBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#test {
+    background-color: black;
+    color: red;
+    height: 100px;
+    width: 100px;
+}
+
+
+#test:hover {
+    background-color: orangered;
+    color: red;
+    height: 100px;
+    width: 100px;
+}
+
+
+dialog {
+
+    animation: fadeIn 0.3s ease-in-out;
+    /* Example animation */
+    background-color: #54BE9E;
+
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 3fr auto;
+    background-color: red;
+    margin-top: 15px;
+    height: 80vh;
+    width: 100%;
+
+}
+
+/*/end of main-content/*/
+
+
+.form-container {
+    grid-column: 1/2;
+    background-color: black;
+}
+
+.task-container {
+    grid-column: 2/2;
+    background-color: orange;
+}
+
+/*/ form styling /*/
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    width: 250px;
+    height: 400px;
+    background-color: #54BE9E;
+
+}
+
+
+/*/ keyframes/*/
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
