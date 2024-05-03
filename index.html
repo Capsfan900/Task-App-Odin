@@ -6,37 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 <script defer src="bundle.js"></script></head>
+<div class="controlBar">
+    <button id="test"> <span class="hover-text">Create A Task?</span></button>
+</div>
 
-<body class="body-content">
-    <div class="controlBar">
-        <button id="test"></button>
-    </div>
+<body>
     <main class="main-content">
-        <div class="form-container"></div>
+        <div class="form-container">
+            <dialog id="form-dialog">
+                <form id="myForm">
+                    <div class="formWrapper">
+                        <h3>Task Creation Tool</h3>
+                        <br>
+                        <div class="colorme">
+                            <label for="title">Title:</label>
+                            <input type="text" id="title" name="title" placeholder="task title" required><br>
+                            <label for="description">Description:</label>
+                            <textarea id="description" name="description" placeholder="brief description of your task"
+                                required></textarea>
+
+                            <label for="dueDate">Due Date:</label>
+                            <input type="date" id="dueDate" name="dueDate" required>
+
+                            <label for="priorityLevel">Priority Level:</label>
+                            <select id="priorityLevel" name="priorityLevel" required>
+                                <option value="">Select a priority</option>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="submit1" type="submit">Submit</button>
+                </form>
+                <div id="form-spacer"></div>
+            </dialog>
+        </div>
         <div class="task-container"></div>
     </main>
-
-
-    <dialog>
-        <h2>Task Creation Tool</h2>
-        <form>
-            <label>Title<br>
-                <input type="text" id="task-title" placeholder="Title">
-            </label>
-            <label>Description<br>
-                <input type="text" id="task-descripton" placeholder="Author">
-            </label>
-            <label>Priority?<br>
-                <input type="range" min="1" max="10" value="5" id="task-priority" placeholder="task-priority (0-10)?">
-            </label>
-            <label>Due Date<br>
-                <input type="date" id="task-dueDate" placeholder="mm/dd/yyyy">
-            </label>
-
-            <button type="submit" id="submitTaskData">Submit Task</button>
-        </form>
-    </dialog>
-
 </body>
+<dialog id="welcome-screen">
+    <div id="welcome-item"></div>
+</dialog>
 
 </html>
