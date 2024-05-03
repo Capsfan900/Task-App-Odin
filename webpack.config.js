@@ -15,11 +15,16 @@ module.exports = {
             use: ["style-loader", "css-loader"],
         },
         {
+            test: /\.(png|svg|jpg|jpeg|gif)$/i,
+            type: 'asset/resource',
+          },
+        {
             test: /\.(js)/,
             use:"babel-loader",
         }
         ]
     }, 
+    
     //creating output file
     output:{
         path: path.resolve(__dirname,"dist"),
