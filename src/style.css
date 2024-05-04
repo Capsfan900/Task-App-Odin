@@ -2,9 +2,11 @@
 * {
     margin: 0;
     font-family: cursive;
+    padding: 7px;
 }
 
 html {
+
     padding: 10px;
     background-position: center;
     background-size: cover;
@@ -12,10 +14,18 @@ html {
     height: 97vh;
     width: 98.5vw;
     background-color: grey;
+    background-size: cover;
+    background-position: center;
 }
 
 body {
-    gap: 15px;
+    margin-top: 150px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
 }
 
 body:has(dialog[open]) {
@@ -27,20 +37,35 @@ h3 {
 }
 
 
+.canvasForTask {
+    background-color: grey;
+    align-self: flex-start;
+}
 
-.controlBar {
-    display: grid;
-    grid-template-columns: auto 1fr 1fr 3fr 3fr 1fr auto;
-    overflow: hidden;
+.task-textarea {
+    transform: translateY(-9px);
+    align-self: flex-start;
+}
+
+.navBar {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 
 #test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #511A23;
     color: red;
     height: 50px;
     width: 100px;
-    grid-column: 2/4;
     cursor: pointer;
 }
 
@@ -130,23 +155,27 @@ dialog#welcome-screen {
 }
 
 
-.main-content {
-    display: grid;
-    grid-template-columns: .5fr 3fr;
-    grid-template-rows: 1fr;
-    margin-top: 15px;
-    height: 80vh;
-    width: 100%;
+.task-scroll-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-
-.form-container {
+.task-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
     overflow: auto;
-    grid-column: 1/2;
-    height: auto;
-    background-color: red;
-
+    gap: 15px;
 }
+
 
 .task-details {
     display: flex;
@@ -176,12 +205,12 @@ dialog#welcome-screen {
 
 .keyValueWrapper {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    justify-content: space-between;
     text-align: center;
     flex-wrap: wrap;
     max-width: 250px;
-    max-height: 500px;
+    height: 700px;
     gap: 30px;
 }
 
@@ -191,7 +220,7 @@ dialog#welcome-screen {
     background-color: darkgray;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     text-align: center;
     border: solid 2px red;
@@ -200,6 +229,8 @@ dialog#welcome-screen {
 .taskContent {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-self: center;
     gap: 20px;
     border: solid red 1px;
     margin-bottom: 5px;
@@ -208,30 +239,26 @@ dialog#welcome-screen {
 }
 
 
-
-.task-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: nowrap;
-    flex-direction: column;
-    height: auto;
-    background-color: olivedrab;
-    overflow-y: auto;
-}
-
 .taskWrapper {
     display: flex;
-    height: 800px;
+    height: auto;
     width: 1300px;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     text-align: center;
-    border: solid 10px red;
     gap: 20px;
+    border: 5px grove purple;
+    padding: 20px;
+    border: solid 1px black;
+    background-color: #4cae4c;
 }
+
+.taskWrapper:hover {
+    border: double 10px red;
+    border-radius: 1%;
+}
+
+
 
 .task-detail {
     color: red;
@@ -355,20 +382,23 @@ dialog#welcome-screen {
     }
 
     #welcome-item {
-        height: 200px;
-        width: 200px;
+        height: 150px;
+        width: 150px;
 
     }
 
     .main-content {
         transform: scale(.8);
+        overflow: hidden;
+
     }
 
     .taskWrapper {
-        transform: scale(.8);
+        transform: scale(.77);
     }
 
     .task-container {
+        overflow-x: hidden;
         width: auto;
     }
 

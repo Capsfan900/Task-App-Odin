@@ -2,12 +2,16 @@ import './style.css'
 import "./createTaskObj"
 import { constructTask } from './createTaskObj';
 
-
+//content needed to collect and store in local storage WEB API
+//-notes data
+//-formTaskData(title,description..etc)
+//and the state or output drawing of the canvas(remeber what was on it)
 
 
 
 //global variables and DOM
 let taskList = [];
+const mainContent = document.querySelector(".main-content");
 const dialog = document.querySelector("dialog");
 const taskBtn = document.getElementById("test");
 const submit = document.querySelector("#submit1");
@@ -40,29 +44,24 @@ taskBtn.addEventListener("click", (e) => {
   });
 
 
-
-
-
   //custom form submission handling (extracts form data into an object)
   submit.addEventListener("click", (e) => {
     e.preventDefault();
      let currTask = constructTask();
-     console.log(currTask);
     taskList.push(currTask);
     
   });
 
 
-
-
   //page load logic
-window.onload = () => {
 
+window.onload = () => {
     welcomeScreen.showModal()
     setTimeout(() => {
       //alert("Welcome To The Site Click Spinny Guy To Enter!")
-      console.log("cum");
+      console.log("hello logs");
     }, "700");
+   
 };
 
 
