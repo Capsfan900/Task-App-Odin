@@ -6,26 +6,35 @@
 }
 
 html {
-
-    padding: 10px;
-    background-position: center;
+    display: grid;
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    height: 97vh;
-    width: 98.5vw;
-    background-color: grey;
-    background-size: cover;
-    background-position: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+
+.globalWrapper {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 body {
-    margin-top: 150px;
-    overflow: hidden;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: auto;
+    padding: 10px;
+    background-repeat: no-repeat;
+    height: auto;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-image: linear-gradient(to right top, #d16b6b, #a7565b, #7e424a, #572f37, #331e23, #361e23, #3a1d24, #3d1d24, #692c37, #983b47, #c94c55, #fb5f5f);
 }
 
 body:has(dialog[open]) {
@@ -51,10 +60,10 @@ h3 {
     display: flex;
     justify-content: center;
     position: fixed;
+    width: auto;
     top: 0;
-    width: 100%;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    z-index: 1;
 }
 
 
@@ -62,27 +71,35 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #511A23;
+    background-color: red;
     color: red;
     height: 50px;
     width: 100px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 
 
 #test:hover {
-    background-color: #A7989F;
+    background-color: black;
     color: red;
-    height: px;
-    transition: 1s;
-    width: 100px;
+    transition: .5s ease-in;
+    width: 300px;
     opacity: 75%;
+    font-size: 15px;
+}
+
+#test:active {
+    transform: scale(1.5);
+
 }
 
 
 
-/*/ welcome screen /*/
+/*/
+    welcome screen
+    /*/
 dialog#welcome-screen {
     height: 60vh;
     width: 30vw;
@@ -117,9 +134,11 @@ dialog#welcome-screen {
 }
 
 
-/*/backdrops/*/
+/*/
+    backdrops
+    /*/
 #welcome-screen::backdrop {
-    background-color: grey;
+    background-image: linear-gradient(to right top, #000000, #151414, #232021, #312d2e, #403b3b, #403b3b, #403b3b, #403b3b, #312d2e, #232021, #151414, #000000);
 
 }
 
@@ -128,13 +147,15 @@ dialog#welcome-screen {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: grey;
+    background-image: linear-gradient(to right top, #000000, #151414, #232021, #312d2e, #403b3b, #403b3b, #403b3b, #403b3b, #312d2e, #232021, #151414, #000000);
 }
 
 
 
 
-/*/ end of welcome screen /*/
+/*/
+    end of welcome screen
+    /*/
 
 #test {
     background-color: #4ADBC8;
@@ -142,6 +163,7 @@ dialog#welcome-screen {
     height: 50px;
     width: 100px;
     opacity: 75%;
+    margin-top: 20px;
 }
 
 
@@ -161,7 +183,9 @@ dialog#welcome-screen {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+
 }
 
 .task-container {
@@ -172,8 +196,7 @@ dialog#welcome-screen {
     justify-content: center;
     align-items: center;
     width: fit-content;
-    overflow: auto;
-    gap: 15px;
+    gap: 50px;
 }
 
 
@@ -210,7 +233,7 @@ dialog#welcome-screen {
     text-align: center;
     flex-wrap: wrap;
     max-width: 250px;
-    height: 700px;
+    height: fit-content;
     gap: 30px;
 }
 
@@ -238,10 +261,35 @@ dialog#welcome-screen {
     text-align: center;
 }
 
+.left-menu {
+    position: fixed;
+    right: 0%;
+    /* Position the div at the left edge of the screen */
+    top: 50%;
+    /* Position the div vertically centered */
+    transform: translateY(-50%);
+    /* Adjust vertical offset */
+    padding: 10px;
+    background-color: black;
+    height: 100%;
+    width: 200px;
+    padding: 25px;
+}
+
+#taskBool {
+
+    height: 50px;
+    width: 50px;
+}
+
+.taskDoneBtn {
+    grid-row: 2/2;
+    grid-column: 4/4;
+}
 
 .taskWrapper {
     display: flex;
-    height: auto;
+    height: 500px;
     width: 1300px;
     justify-content: center;
     align-items: center;
@@ -251,12 +299,16 @@ dialog#welcome-screen {
     padding: 20px;
     border: solid 1px black;
     background-color: #4cae4c;
+    margin-top: 175px;
+    margin-bottom: 200px;
+    transition: left 0.5s, top 0.5s;
+    /* Smooth transition */
 }
 
-.taskWrapper:hover {
-    border: double 10px red;
-    border-radius: 1%;
-}
+
+
+
+
 
 
 
@@ -267,14 +319,18 @@ dialog#welcome-screen {
     width: fit-content;
 }
 
-/*/end of main-content/*/
+/*/
+    end of main-content
+    /*/
 
 
 
 
 
 
-/*/ form styling /*/
+/*/
+    form styling
+    /*/
 #form-dialog,
 #welcome-screen {
     overflow-y: auto;
@@ -394,7 +450,8 @@ dialog#welcome-screen {
     }
 
     .taskWrapper {
-        transform: scale(.77);
+        transform: scale(.6);
+        margin-right: 250px;
     }
 
     .task-container {
