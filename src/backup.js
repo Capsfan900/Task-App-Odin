@@ -21,9 +21,6 @@ export const constructTask = () => {
   }
   console.log(taskObj);
 //End of Object Creation Phase//
-
-
-
 //Actual rendering of the task elements //
 
 //Element creation

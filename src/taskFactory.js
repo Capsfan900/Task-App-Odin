@@ -1,17 +1,27 @@
 // i know i need to rename a lot of this, it's a mess
 let taskList = [];
-const taskContainer = document.querySelector('.task-container');
+const leftMenu = document.querySelector(".left-menu");
+
+ export function Task(title, description, dueDate, priorityLevel) {
+  this.Title = title;
+  this.Description = description;
+  this.DueDate = dueDate;
+  this.PriorityLevel = priorityLevel;
+}
+
+
 export const constructTask = () => {
   // Object Creation Phase
   const dialog = document.querySelector("dialog");
   const formTitle = document.getElementById("title");
   const form = document.getElementById('myForm');
-  const taskObj = {
-    Title: form.elements.title.value,
-    Description: form.elements.description.value,
-    DueDate: form.elements.dueDate.value,
-    PriorityLevel: form.elements.priorityLevel.value
-  };
+
+  const taskObj = new Task(
+    form.elements.title.value,
+    form.elements.description.value,
+    form.elements.dueDate.value,
+    form.elements.priorityLevel.value
+  );
 
   if (formTitle.value === "") {
     alert("form is not complete!");
@@ -19,13 +29,21 @@ export const constructTask = () => {
     dialog.close();
     form.reset();
   }
-
   console.log(taskObj);
   // End of Object Creation Phase
+  
+  const taskBar = document.createElement("div");
+  taskBar.setAttribute("class","taskBarItems");
+  taskBar.setAttribute("id",`${taskObj.Title}`);
+  taskBar.style.color ="blue";
+  taskBar.width ="100%";
+  taskBar.textContent = `${taskObj.Title}`
+  leftMenu.appendChild(taskBar);
 
   // Actual rendering of the task elements
   // Element creation
   const taskWrapper = document.createElement("div");
+  taskWrapper.setAttribute("id",`${taskObj.Title}`)
   // Dom manipulation
   taskWrapper.setAttribute("class","taskWrapper");
   const taskItem = document.createElement("div");
@@ -63,7 +81,7 @@ export const constructTask = () => {
   taskItem.setAttribute("class", "task");
   taskItem.style.width = "20rem";
   taskItem.style.color = "Red";
-  taskItem.style.height = "auto";
+  taskItem.style.height = "fit-content";
   taskItem.style.background = "grey";
   taskItem.appendChild(keyValueWrapper);
   taskWrapper.appendChild(taskItem);
@@ -119,11 +137,18 @@ export const constructTask = () => {
   textarea.placeholder = "Enter notes...";
   textarea.rows = 20;
   textarea.style.width = "100%";
-  textarea.style.height = "400px"
-  textarea.style.marginTop = "10px";
+  textarea.style.height = "400px";
 
   taskWrapper.appendChild(textarea);
   taskMenu.append(taskWrapper);
+  let taskTitleID = taskObj.Title;
+
+
+  return {
+    taskTitleID,
+    taskObj
+  }
+
 }
 
 
