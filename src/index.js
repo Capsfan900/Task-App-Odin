@@ -21,6 +21,7 @@ const welcomeScreen = document.querySelector("#welcome-screen");
 const welcomeItem = document.querySelector("#welcome-item");
 const startMenu = document.querySelector("dialog#welcome-screen");
 const task = document.querySelector(".taskWrapper");
+const isDone = document.querySelector(".isDone");
 
 //event listeners
 
@@ -34,13 +35,12 @@ taskBtn.addEventListener("click", (e) => {
     body.style.opacity = 1;
   });
 
-
+ 
 
   //custom form submission handling (extracts form data into an object)
   submit.addEventListener("click", (e) => {
     let currTask = constructTask();
     e.preventDefault();
-     console.log(currTask.taskTitleID);
     taskList.push(currTask);
 
   });
@@ -49,16 +49,14 @@ window.onload = () => {
     welcomeScreen.showModal()
     setTimeout(() => {
       //alert("Welcome To The Site Click Spinny Guy To Enter!")
-      console.log("hello logs");
+      console.log("hello logs this is my shitty program for tasks ");
     }, "700");
    
 };
 
 
-const focusTaskElement = () =>{
-  const itemToFocus = currTask.taskTitleID;
-};
-focusTaskElement();
+
+
 
 
 

@@ -38,8 +38,7 @@ export const constructTask = () => {
   
   const taskBar = document.createElement("div");
   taskBar.setAttribute("class","taskBarItems");
-  let test = taskObj.Title
-  taskBar.setAttribute("id",test);
+  taskBar.setAttribute("id",`${taskObj.Title.replace(/\s/g, "")}`);
   taskBar.style.color ="blue";
   taskBar.width ="100%";
   taskBar.textContent = `${taskObj.Title}`;
@@ -47,9 +46,8 @@ export const constructTask = () => {
   isDone.setAttribute("class","isDone");
   isDone.style.color = "black";
   isDone.textContent ="X";
-  leftMenu.appendChild(taskBar);
   taskBar.appendChild(isDone);
-
+  leftMenu.appendChild(taskBar);
   
 
   // Actual rendering of the task elements
@@ -157,7 +155,7 @@ export const constructTask = () => {
   taskMenu.append(taskWrapper);
 
 
-const taskBarItem = document.querySelector(`#${taskObj.Title}`);
+const taskBarItem = document.querySelector(`#${taskObj.Title.replace(/\s/g, "")}`);
 const taskWrapperID = document.querySelector(`#${taskObj.Title}1`);
 console.log(taskBarItem);
 
@@ -179,5 +177,3 @@ console.log(taskBarItem);
   }
 
 }
-
-

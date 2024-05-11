@@ -262,8 +262,22 @@ dialog#welcome-screen {
 }
 
 .taskBarItems {
+    display: flex;
+    gap: 50px;
     background-color: orange;
-    width: 100%;
+    width: fit-content;
+    height: fit-content;
+    justify-content: center;
+    align-items: center;
+}
+
+.isDone {
+    display: flex;
+    text-align: center;
+    height: fit-content;
+    width: fit-content;
+    width: 10px;
+    background-color: red;
 }
 
 .taskBarItems:hover {
