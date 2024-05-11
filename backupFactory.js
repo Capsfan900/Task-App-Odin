@@ -1,18 +1,16 @@
 // i know i need to rename a lot of this, it's a mess
 
-
 let taskList = [];
 const leftMenu = document.querySelector(".left-menu");
 const taskContainer = document.querySelector(".task-container");
 
-
- export function Task(title, description, dueDate, priorityLevel) {
+//remeber order of parameters matter in constructors
+export function Task(title, description, dueDate, priorityLevel) {
   this.Title = title;
   this.Description = description;
   this.DueDate = dueDate;
   this.PriorityLevel = priorityLevel;
 }
-
 
 export const constructTask = () => {
   // Object Creation Phase
@@ -37,27 +35,27 @@ export const constructTask = () => {
   // End of Object Creation Phase
   
   const taskBar = document.createElement("div");
-  taskBar.setAttribute("class","taskBarItems");
-  taskBar.setAttribute("id",`${taskObj.Title.replace(/\s/g, "")}`);
+  taskBar.setAttribute("class", "taskBarItems");
+  const titleWithoutSpaces = taskObj.Title.replace(/\s+/g, '');
+  taskBar.setAttribute("id", titleWithoutSpaces);
   taskBar.style.color ="blue";
   taskBar.width ="100%";
   taskBar.textContent = `${taskObj.Title}`;
   const isDone = document.createElement("div");
-  isDone.setAttribute("class","isDone");
+  isDone.setAttribute("class", "isDone");
   isDone.style.color = "black";
   isDone.textContent ="X";
-  taskBar.appendChild(isDone);
   leftMenu.appendChild(taskBar);
-  
+  taskBar.appendChild(isDone);
+
 
   // Actual rendering of the task elements
   // Element creation
 
-
   const taskWrapper = document.createElement("div");
-  taskWrapper.setAttribute("id",`${taskObj.Title}1`)
+  taskWrapper.setAttribute("class", "taskWrapper");
+  taskWrapper.setAttribute("id", `${titleWithoutSpaces}1`);
   // Dom manipulation
-  taskWrapper.setAttribute("class","taskWrapper");
   const taskItem = document.createElement("div");
   const taskMenu = document.querySelector(".task-container");
   // Assigning taskObj made from formData to a variable
@@ -77,7 +75,6 @@ export const constructTask = () => {
     keyDiv.style.height = "20px";
     keyDiv.style.width = "100px";
     taskContent.appendChild(keyDiv);
-
 
     const valueDiv = document.createElement("div");
     valueDiv.classList.add("value");
@@ -154,26 +151,13 @@ export const constructTask = () => {
   taskWrapper.appendChild(textarea);
   taskMenu.append(taskWrapper);
 
+  const taskBarItem = document.querySelector(`#${titleWithoutSpaces}`);
+  const taskWrapperID = document.querySelector(`#${titleWithoutSpaces}1`);
+  console.log(taskBarItem);
 
-const taskBarItem = document.querySelector(`#${taskObj.Title.replace(/\s/g, "")}`);
-const taskWrapperID = document.querySelector(`#${taskObj.Title}1`);
-console.log(taskBarItem);
 
-  isDone.addEventListener("click",function(){
+  isDone.addEventListener("click", function() {
     taskWrapperID.remove();
     taskBarItem.remove();
   });
-
-
-  function populateStorage(){
-    
-  }
-  
-
-  let taskTitleID = taskObj.Title;
-  return {
-    taskTitleID,
-    taskObj
-  }
-
 }

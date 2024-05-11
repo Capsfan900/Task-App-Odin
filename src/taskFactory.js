@@ -1,12 +1,12 @@
-// i know i need to rename a lot of this, it's a mess
 
-
+//Stores TaskItems for LocalStorage
 let taskList = [];
+
+//Parent Container
 const leftMenu = document.querySelector(".left-menu");
-const taskContainer = document.querySelector(".task-container");
 
-
- export function Task(title, description, dueDate, priorityLevel) {
+// Task constructor function
+function Task(title, description, dueDate, priorityLevel) {
   this.Title = title;
   this.Description = description;
   this.DueDate = dueDate;
@@ -14,8 +14,10 @@ const taskContainer = document.querySelector(".task-container");
 }
 
 
-export const constructTask = () => {
-  // Object Creation Phase
+
+
+//Task Data Module//
+export const createTaskData = () => {
   const dialog = document.querySelector("dialog");
   const formTitle = document.getElementById("title");
   const form = document.getElementById('myForm');
@@ -29,45 +31,52 @@ export const constructTask = () => {
 
   if (formTitle.value === "") {
     alert("form is not complete!");
+    return null; // Return null if the form is incomplete
   } else {
     dialog.close();
     form.reset();
   }
-  console.log(taskObj);
-  // End of Object Creation Phase
-  
+  taskList.push(taskObj)
+  console.log(taskList);
+  // Call renderTaskFromData and pass taskObj as an argument
+  renderTaskFromData(taskObj);
+
+  return taskObj;
+};
+
+
+
+
+
+
+//Task Render Module
+export const renderTaskFromData = (taskObj) => {
+  const taskContainer = document.querySelector(".task-container");
+
   const taskBar = document.createElement("div");
-  taskBar.setAttribute("class","taskBarItems");
-  let test = taskObj.Title
-  taskBar.setAttribute("id",test);
-  taskBar.style.color ="blue";
-  taskBar.width ="100%";
-  taskBar.textContent = `${taskObj.Title}`;
+  taskBar.setAttribute("class", "taskBarItems");
+  const titleWithoutSpaces = taskObj.Title.replace(/\s+/g, '');
+  taskBar.setAttribute("id", titleWithoutSpaces);
+  taskBar.style.color = "blue";
+  taskBar.textContent = taskObj.Title;
   const isDone = document.createElement("div");
-  isDone.setAttribute("class","isDone");
+  isDone.setAttribute("class", "isDone");
   isDone.style.color = "black";
-  isDone.textContent ="X";
+  isDone.textContent = "X";
   leftMenu.appendChild(taskBar);
   taskBar.appendChild(isDone);
 
-  
-
   // Actual rendering of the task elements
   // Element creation
-
-
   const taskWrapper = document.createElement("div");
-  taskWrapper.setAttribute("id",`${taskObj.Title}1`)
-  // Dom manipulation
-  taskWrapper.setAttribute("class","taskWrapper");
+  taskWrapper.setAttribute("class", "taskWrapper");
+  taskWrapper.setAttribute("id", `${titleWithoutSpaces}1`);
+
   const taskItem = document.createElement("div");
-  const taskMenu = document.querySelector(".task-container");
-  // Assigning taskObj made from formData to a variable
-  let makeTask = taskObj;
   const keyValueWrapper = document.createElement("div");
   keyValueWrapper.classList.add("keyValueWrapper");
 
-  for (const [key, value] of Object.entries(makeTask)) {
+  for (const [key, value] of Object.entries(taskObj)) {
     // element create to wrap the contents of each object pair
     const taskContent = document.createElement("div");
     taskContent.classList.add("taskContent");
@@ -79,7 +88,6 @@ export const constructTask = () => {
     keyDiv.style.height = "20px";
     keyDiv.style.width = "100px";
     taskContent.appendChild(keyDiv);
-
 
     const valueDiv = document.createElement("div");
     valueDiv.classList.add("value");
@@ -99,8 +107,6 @@ export const constructTask = () => {
   taskItem.style.background = "grey";
   taskItem.appendChild(keyValueWrapper);
   taskWrapper.appendChild(taskItem);
-
-  const formContainer = document.createElement("div");
 
   // Create canvas element (potentially make this its own module)
   const canvas = document.createElement("canvas");
@@ -152,32 +158,25 @@ export const constructTask = () => {
   textarea.rows = 20;
   textarea.style.width = "100%";
   textarea.style.height = "400px";
-
   taskWrapper.appendChild(textarea);
-  taskMenu.append(taskWrapper);
+  taskContainer.appendChild(taskWrapper);
 
+  const taskBarItem = document.querySelector(`#${titleWithoutSpaces}`);
+  const taskWrapperID = document.querySelector(`#${titleWithoutSpaces}1`);
 
-const taskBarItem = document.querySelector(`#${taskObj.Title}`);
-const taskWrapperID = document.querySelector(`#${taskObj.Title}1`);
-console.log(taskBarItem);
-
-  isDone.addEventListener("click",function(){
+  isDone.addEventListener("click", function() {
     taskWrapperID.remove();
     taskBarItem.remove();
   });
+};
 
 
-  function populateStorage(){
-    
-  }
-  
 
-  let taskTitleID = taskObj.Title;
-  return {
-    taskTitleID,
-    taskObj
-  }
+
+
+//Task Data Local Storage 
+const storeTaskObjInLocalStorage = (taskList) =>{
+
+
 
 }
-
-

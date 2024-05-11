@@ -1,6 +1,10 @@
+//BUGS FOUND//
+//-task title cannot contain anything not char or number ex: task1 / would not work 
+//-try to rework state management it relys on dialog for start menu and thats not generally good practice i believe
+
 import './style.css'
 import "./taskFactory"
-import { constructTask } from './taskFactory';
+import { createTaskData } from './taskFactory';
 
 
 //content needed to collect and store in local storage WEB API
@@ -20,8 +24,8 @@ const submit = document.querySelector("#submit1");
 const welcomeScreen = document.querySelector("#welcome-screen");
 const welcomeItem = document.querySelector("#welcome-item");
 const startMenu = document.querySelector("dialog#welcome-screen");
-const task = document.querySelector(".taskWrapper");
-const isDone = document.querySelector(".isDone");
+
+
 
 //event listeners
 
@@ -35,14 +39,12 @@ taskBtn.addEventListener("click", (e) => {
     body.style.opacity = 1;
   });
 
- 
 
   //custom form submission handling (extracts form data into an object)
   submit.addEventListener("click", (e) => {
-    let currTask = constructTask();
+    let currTask = createTaskData();
     e.preventDefault();
     taskList.push(currTask);
-
   });
 
 window.onload = () => {
@@ -52,6 +54,7 @@ window.onload = () => {
       console.log("hello logs this is my shitty program for tasks ");
     }, "700");
    
+
 };
 
 
