@@ -38,13 +38,17 @@ export const createTaskData = () => {
   }
   taskList.push(taskObj)
   console.log(taskList);
+
+  //Local Storage Logic
+  for(const item of taskList){
+   console.log(item.Title);
+   localStorage.setItem(`${item.Title}`,JSON.stringify(item));
+  }
   // Call renderTaskFromData and pass taskObj as an argument
   renderTaskFromData(taskObj);
 
   return taskObj;
 };
-
-
 
 
 
@@ -165,6 +169,8 @@ export const renderTaskFromData = (taskObj) => {
   const taskWrapperID = document.querySelector(`#${titleWithoutSpaces}1`);
 
   isDone.addEventListener("click", function() {
+    const keyToRemove = `${taskObj.Title}`;
+    localStorage.removeItem(keyToRemove);
     taskWrapperID.remove();
     taskBarItem.remove();
   });
@@ -174,9 +180,5 @@ export const renderTaskFromData = (taskObj) => {
 
 
 
-//Task Data Local Storage 
-const storeTaskObjInLocalStorage = (taskList) =>{
 
 
-
-}

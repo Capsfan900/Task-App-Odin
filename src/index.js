@@ -1,10 +1,11 @@
 //BUGS FOUND//
-//-task title cannot contain anything not char or number ex: task1 / would not work 
+//-task title cannot contain anything not char or number ex: task1 / or ] or } would not work 
 //-try to rework state management it relys on dialog for start menu and thats not generally good practice i believe
+//get better 
 
 import './style.css'
 import "./taskFactory"
-import { createTaskData } from './taskFactory';
+import { createTaskData, renderTaskFromData } from './taskFactory';
 
 
 //content needed to collect and store in local storage WEB API
@@ -53,8 +54,28 @@ window.onload = () => {
       //alert("Welcome To The Site Click Spinny Guy To Enter!")
       console.log("hello logs this is my shitty program for tasks ");
     }, "700");
-   
+    
 
+
+    //Loads LocalStorage Content For "persistance"
+    for (const key in localStorage) {
+      // Check if the key is actually part of local storage (not inherited)
+      if (localStorage.hasOwnProperty(key)) {
+        const valueString = localStorage.getItem(key);
+    
+        // Try parsing the value as JSON (assuming tasks are stored as JSON objects)
+        try {
+          const taskObject = JSON.parse(valueString);
+          renderTaskFromData(taskObject)
+          //console.log("Key:", key);
+          //console.log("Task Object:", taskObject);
+        } catch (error) {
+          console.warn(`Error parsing key: ${key}`, error);
+        }
+      }
+    }
+
+  
 };
 
 
